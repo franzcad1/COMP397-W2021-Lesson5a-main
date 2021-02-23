@@ -6,6 +6,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public CharacterController controller;
 
+    [Header("Movement")]
     public float maxSpeed = 10.0f;
     public float gravity = -30.0f;
     public float jumpHeight = 3.0f;
@@ -16,6 +17,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Vector3 velocity;
     public bool isGrounded;
+
+    [Header("Minimap")]
+    public GameObject miniMap;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +48,11 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetButton("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            miniMap.SetActive(!miniMap.activeInHierarchy);
         }
 
         velocity.y += gravity * Time.deltaTime;
